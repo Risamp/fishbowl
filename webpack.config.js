@@ -17,7 +17,8 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: "public" }
+                { from: "public" },
+                { from: "fish", to: "fish" }
             ],
         }),
         new HtmlWebpackPlugin({

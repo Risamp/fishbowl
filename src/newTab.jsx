@@ -12,6 +12,9 @@ function NewTab() {
             </div>
 
             <script type="text/javascript" src="./physics.js"></script>
+            <img src="./fish/test/fish-a.png"/>
+            <img src="fish/test/fish-a.png"/>
+            <img src="/fish/test/fish-a.png"/>
         </>
         
     );
