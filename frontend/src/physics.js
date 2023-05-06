@@ -1,173 +1,9 @@
 import Matter from "matter-js";
-
-function makeFish(type, length, height, x, y) {
-    var Body = Matter.Body,
-        Bodies = Matter.Bodies,
-        Composite = Matter.Composite,
-        Constraint = Matter.Constraint;
-
-    var group = Body.nextGroup(true);
-
-    var fish = Composite.create({ label: type });
-
-    var mouth = Bodies.rectangle(x - (3 * length / 8), y + height / 4, height / 2, height / 5, { 
-        collisionFilter: {
-            group: group
-        },
-        chamfer: {
-            radius: height * 0.5
-        },
-        restitution: 0.4,
-        friction: 0.8,
-        render: {
-            sprite:  {
-                texture: './fish/' + type + '/mouth.png',
-                xScale: 0.5,
-                yScale: 0.5
-            }
-    }});
-
-    var head = Bodies.rectangle(x - length / 4, y, length / 3, height, { 
-        collisionFilter: {
-            group: group
-        },
-        chamfer: {
-            radius: height * 0.5
-        },
-        restitution: 0.4,
-        friction: 0.8,
-        render: {
-            sprite:  {
-                texture: './fish/' + type + '/head.png',
-                xScale: 0.5,
-                yScale: 0.5
-            }
-    }});
-
-    var body = Bodies.rectangle(x, y, length / 2, height, { 
-        collisionFilter: {
-            group: group
-        },
-        chamfer: {
-            radius: height * 0.5
-        },
-        restitution: 0.4,
-        density: 0.0002,
-        render: {
-            sprite:  {
-                texture: './fish/' + type + '/body.png',
-                xScale: 0.5,
-                yScale: 0.5
-            }
-    }});
-
-    var tail = Bodies.rectangle(x + length / 4, y - 5, length / 3, height, { 
-        collisionFilter: {
-            group: group
-        },
-        chamfer: {
-            radius: height * 0.5
-        },
-        restitution: 0.4,
-        density: 0.0002,
-        render: {
-            sprite:  {
-                texture: './fish/' + type + '/tail.png',
-                xScale: 0.5,
-                yScale: 0.5
-            }
-    }});
-
-    var eye = Bodies.circle(x, y, height / 4, { 
-        collisionFilter: {
-            group: group
-        },
-        restitution: 0.4,
-        friction: 0.8,
-        density: 0.0002,
-        render: {
-            sprite:  {
-                texture: './fish/' + type + '/eye.png',
-                xScale: 0.5,
-                yScale: 0.5
-            }
-    }});
-
-    console.log(head);
-
-                
-    var headBody = Constraint.create({
-        bodyA: head,
-        bodyB: body,
-        pointA: { x: length / 16, y: 0 },
-        pointB: { x: -length / 16, y: 0 },
-        stiffness: 0.8,
-        damping: 0.1,
-        length: 0
-    });
-                    
-    var headEye = Constraint.create({
-        bodyA: head,
-        bodyB: eye,
-        pointA: { x: -30, y: -5 },
-        stiffness: 1,
-        length: 0
-    });
-
-    var headMouthA = Constraint.create({
-        bodyA: head,
-        bodyB: mouth,
-        pointA: { x: -30, y: 8 },
-        pointB: { x: 10, y: 0 },
-        stiffness: 1,
-        length: 0
-    });
-
-    var headMouthB = Constraint.create({
-        bodyA: head,
-        bodyB: mouth,
-        pointA: { x: -25, y: 13 },
-        pointB: { x: 15, y: 5 },
-        stiffness: 0.2,
-        length: 3
-    });
-
-    var bodyTail = Constraint.create({
-        bodyA: body,
-        bodyB: tail,
-        pointA: { x: length / 16, y: 0 },
-        pointB: { x: -length / 16, y: 2 },
-        stiffness: 0.8,
-        damping: 0.1,
-        length: 0
-    });
-    
-    Composite.addBody(fish, head);
-    Composite.addBody(fish, body);
-    Composite.addBody(fish, tail);
-    Composite.addBody(fish, mouth);
-    Composite.addBody(fish, eye);
-    // Composite.addBody(fish, pectoral);
-    // Composite.addBody(fish, pelvicA);
-    // Composite.addBody(fish, pelvicB);
-    // Composite.addBody(fish, anal);
-    // Composite.addBody(fish, tailA);
-    // Composite.addBody(fish, tailB);
-    // Composite.addBody(fish, dorsalA);
-    // Composite.addBody(fish, dorsalB);
-    Composite.addConstraint(fish, headBody);
-    Composite.addConstraint(fish, headEye);
-    Composite.addConstraint(fish, headMouthA);
-    Composite.addConstraint(fish, headMouthB);
-    Composite.addConstraint(fish, bodyTail);
-
-    return fish;
-};
+import makeFish from "./fish";
 
 var canvas = document.querySelector('#matter-canvas');
 const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-
 
 // module aliases
 var Engine = Matter.Engine,
@@ -191,9 +27,10 @@ var Engine = Matter.Engine,
             width: width,
             height: height,
             showAngleIndicator: false,
-            wireframes: false,
-            showDebug: true,
-            showPositions: true
+            wireframes: true,
+            showDebug: false,
+            showPositions: true,
+            showBounds: true
         }
     });
 
@@ -214,8 +51,10 @@ var Engine = Matter.Engine,
         Bodies.rectangle(-wallPadding, height / 2, 50, height, { isStatic: true })
     ]);
 
-    // see car function defined later in this file
-    Composite.add(world, makeFish("test", 600, 120, width / 2, height / 2));
+    // add fish
+    Composite.add(world, makeFish("test", 580, 228, width / 2, height / 2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 2));
     
     
     // add mouse control
@@ -225,7 +64,7 @@ var Engine = Matter.Engine,
             constraint: {
                 stiffness: 0.2,
                 render: {
-                    visible: true
+                    visible: false
                 }
             }
         });
