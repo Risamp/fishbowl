@@ -45,10 +45,10 @@ var Engine = Matter.Engine,
     // add bodies
     Composite.add(world, [
         // walls
-        Bodies.rectangle(width / 2, -wallPadding, width, 50, { isStatic: true }),
+        Bodies.rectangle(width / 2, -height - wallPadding, width, 50, { isStatic: true }), // double height ceiling
         Bodies.rectangle(width / 2, height + wallPadding, width, 50, { isStatic: true }),
-        Bodies.rectangle(width + wallPadding, height / 2, 50, height, { isStatic: true }),
-        Bodies.rectangle(-wallPadding, height / 2, 50, height, { isStatic: true }),
+        Bodies.rectangle(width + wallPadding, 0, 50, height * 2, { isStatic: true }),
+        Bodies.rectangle(-wallPadding, 0, 50, height * 2, { isStatic: true }),
 
         // center panel
         Bodies.rectangle(width / 2, height / 2, 480, 280, { 
@@ -60,10 +60,10 @@ var Engine = Matter.Engine,
     ]);
 
     // add fish
-    Composite.add(world, makeFish("test", 580, 228, width / 2, height / 4));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 4, 1, true));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 4, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 4, 0.8));
+    Composite.add(world, makeFish("test", 580, 228, width / 2, height / 4, 0.7));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 4, 0.4, true));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 4, 0.6));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 4, 0.6));
     Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 4, 0.5));
     // some little buggers
     Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 4, 0.25));

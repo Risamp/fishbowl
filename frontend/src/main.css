@@ -10,26 +10,35 @@
     --panel-width: 500px;
     --panel-height: 300px;
 
-    --dark: #29353f;
+    --dark: #BFFFA0;
     --light: #ffffff;
 
     --main: var(--dark);
     --content: var(--light);
+
+    --font-family-major: 'Outfit';
 }
 
-* {
+*, div, button {
     box-sizing: border-box;
     text-decoration: none;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
 }
 
 html {
     background: var(--main);
-    font-family: 'Outfit', sans-serif !important;
 }
 
 #matter-canvas {
     z-index: 1;
     background: transparent !important;
+}
+
+.content {
+    font-family: var(--font-family-major);
 }
 
 .background {
@@ -47,6 +56,24 @@ html {
     inset: 0;
 }
 
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: calc(50vh - 27rem);
+    color: var(--light);
+}
+
+.clock__date {
+    transform: translateY(4rem);
+    font-size: 4rem;
+}
+
+.clock__time {
+    font-size: 13rem; 
+}
+
 .panel {
     position: absolute;
     width: var(--panel-width);
@@ -62,4 +89,36 @@ html {
     justify-content: center;
     align-items: center;
     padding: 1rem;
+
+    border-width: 2px 5px 5px 2px;
+    border-style: solid;
+    border-color: #471554;
+}
+
+.button {
+    padding: 0.5rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 99999px;
+    font-family: var(--font-family-major);
+    cursor: pointer;
+}
+
+.button--primary {
+    position: relative;
+    background: #BFFFA0;
+    border-width: 2px 5px 5px 2px;
+    border-style: solid;
+    border-color: #471554;
+    color: #471554;
+    border-radius: 2px;
+
+    overflow: hidden;
+
+    font-weight: 800;
+    transition: all 50ms ease;
+}
+
+.button--primary:hover {
+    border-width: 2px 8px 8px 2px;
+    transform: translate(3, 3);
 }
