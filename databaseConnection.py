@@ -8,7 +8,6 @@ class DatabaseConnection(object):
     def __init__(self) -> None:
         load_dotenv()
         self.uri = os.getenv('DATABASE_CONNECTION')
-        print(self.uri)
         self.client = None
 
     def __enter__(self):
