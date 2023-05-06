@@ -137,11 +137,10 @@ body {
 }
 
 .fish-info__panel {
+    box-sizing: border-box;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: 2rem;
+    top: 5rem;
+    right: 5rem;
     width: 20vw;
     height: fit-content;
     min-height: 5rem;
@@ -149,12 +148,105 @@ body {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    padding-bottom: 4rem;
+    overflow: hidden;
+    color: #202020;
 
     z-index: 10;
 
     transition: all 200ms ease;
 }
 
+.fish-info__name {
+    font-weight: 400;
+    font-size: 2rem;
+    color: #202020;
+    padding-bottom: 0.5rem;
+}
+
+.fish-info__scientific {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1rem;
+    color: #303030;
+    padding-bottom: 0.5rem;
+}
+
+.fish-info__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    fill: #202020;
+    cursor: pointer;
+}
+
 .fish-info__panel.closed {
     transform: translateX(2000px);
+}
+
+.fish-info__pop-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.fish-info__pop-trend {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fish-info__pop-container--decreasing {
+    background: #8a1515;
+    color: white;
+}
+
+.fish-info__pop-container--increasing {
+    background: #108f30;
+    color: white;
+}
+
+.fish-info__link {
+    color: #202020;
+    font-size: 0.9rem;
+
+    transition: color 200ms ease;
+}
+
+.fish-info__link:hover {
+    color: #8a1515;
+}
+
+.fish-info__status,
+.fish-info__region {
+    font-size: 0.9rem;
+
+}
+
+.fish-info__overfishing {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.fish-info__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0;
+    border-top: 1px solid #909090;
+    border-bottom: 1px solid #909090;
 }

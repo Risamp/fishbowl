@@ -1,14 +1,16 @@
 {"data": [{
+        "key": "marlin",
         "_id": 1,
         "scientific_name": "Makaira nigricans",
         "common_name" : "Blue Marlin",
-        "population_trend" : "Decreasing", 
+        "population_decreasing" : "Decreasing", 
         "region": "Global",
         "status": "Vulnerable",
         "overfishing": "Blue Marlin are taken in directed artisanal and sport fisheries, and also as incidental catch in pelagic longline fisheries targeting tunas and swordfish",
         "reference" : "https://www.iucnredlist.org/species/170314/46936155"
     },
     {
+        "key": "meagre",
         "_id": 2,
         "scientific_name": "Argyrosomus japonicus",
         "common_name" : "Dusky Meagre",
@@ -19,6 +21,7 @@
         "reference" : "https://www.iucnredlist.org/species/49145403/49234015"
     },
     {
+        "key": "bahaba",
         "_id": 3,
         "scientific_name": "Bahaba taipingensis",
         "common_name" : "Chinese Bahaba",
@@ -29,6 +32,7 @@
         "reference" : "https://www.iucnredlist.org/species/61334/130105307"
     },
     {
+        "key": "bluefin",
         "_id": 4,
         "scientific_name": "Thunnus maccoyii",
         "common_name" : "Southern bluefin tuna",
@@ -39,6 +43,7 @@
         "reference" : "https://www.iucnredlist.org/species/21858/170082633"
     },
     {
+        "key": "bigeye",
         "_id": 5,
         "scientific_name": "Thunnus obesus",
         "common_name" : "Bigeye Tuna",
@@ -49,9 +54,10 @@
         "reference" : "https://www.iucnredlist.org/species/21859/46912402"
     },
     {
+        "key": "beluga",
         "_id": 6,
         "scientific_name": "Huso huso",
-        "common_name" : "Beluga",
+        "common_name" : "Beluga sturgeon",
         "population_decreasing" : "Decreasing", 
         "region": "Europe",
         "status": "Critically Endangered",
@@ -59,6 +65,7 @@
         "reference" : "https://www.iucnredlist.org/ja/species/10269/135087846"
     },
     {
+        "key": "baldchin",
         "_id": 7,
         "scientific_name": "Choerodon rubescens",
         "common_name" : "Baldchin Groper",
@@ -69,6 +76,7 @@
         "reference" : "https://www.fish.gov.au/report/386-Baldchin-Groper-2020"
     },
     {
+        "key": "warehou",
         "_id": 8,
         "scientific_name": "Seriolella brama",
         "common_name" : "Blue Warehou",
@@ -79,6 +87,7 @@
         "reference" : "https://www.afma.gov.au/species/blue-warehou"
     },
     {
+        "key": "grouper",
         "_id": 9,
         "scientific_name": "Epinephelus akaara",
         "common_name" : "Hong Kong Grouper",
@@ -89,6 +98,7 @@
         "reference" : "https://www.afma.gov.au/species/blue-warehou"
     },
     {
+        "key": "manta",
         "_id": 10,
         "scientific_name": "Mobula birostris",
         "common_name" : "Oceanic Manta Ray",

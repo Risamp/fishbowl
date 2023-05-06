@@ -24,15 +24,15 @@ function NewTab() {
     //     setFishData(data);
     // }
     
-    useEffect(() => {
-        //fetchFish();
-    }, []);
+    // useEffect(() => {
+    //     //fetchFish();
+    // }, []);
 
-    useEffect(() => {
-        fishData.forEach((fish) => {
-            fishSim.addFish(fish.scientific_name);
-        })
-    }, [fishData]);
+    // useEffect(() => {
+    //     fishData.forEach((fish) => {
+    //         fishSim.addFish(fish.scientific_name);
+    //     })
+    // }, [fishData]);
 
     return (
         <>
