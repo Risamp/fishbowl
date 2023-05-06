@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 
-export default function makeFish(type, length, height, x, y) {
+export default function makeFish(type, length, height, x, y, nose = false) {
     var Body = Matter.Body,
         Bodies = Matter.Bodies,
         Composite = Matter.Composite,
@@ -14,22 +14,23 @@ export default function makeFish(type, length, height, x, y) {
     var friction = 0.5;
     var rounded = { radius: (height * 0.6) * 0.5 };
     var collisionGroup = { group: group };
+    var spriteScale = 0.5;
 
     // BODIES 
 
-    var mouth = Bodies.rectangle(x - (3 * length / 8), y + height / 4, height / 2, height / 5, { 
+    var mouth = Bodies.rectangle(x - (0.35 * length), y + (0.1 * height), length * 0.1, height * 0.2, { 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/mouth.png',
-                xScale: 0.5,
-                yScale: 0.5
+                xScale: spriteScale,
+                yScale: spriteScale
             }
     }});
 
-    var head = Bodies.rectangle(x - length / 4, y, length / 3, height * 0.6, { 
+    var head = Bodies.rectangle(x - (0.25 * length), y, 0.35 * length, height * 0.6, { 
         collisionFilter: collisionGroup,
         chamfer: rounded,
         restitution: restitution,
@@ -37,12 +38,12 @@ export default function makeFish(type, length, height, x, y) {
         render: {
             sprite:  {
                 texture: './fish/' + type + '/head.png',
-                xScale: 0.5,
-                yScale: 0.5
+                xScale: spriteScale,
+                yScale: spriteScale
             }
     }});
 
-    var body = Bodies.rectangle(x, y, length / 2, height * 0.6, { 
+    var body = Bodies.rectangle(x, y, length * 0.4, height * 0.6, { 
         collisionFilter: collisionGroup,
         chamfer: rounded,
         restitution: restitution,
@@ -51,13 +52,13 @@ export default function makeFish(type, length, height, x, y) {
         render: {
             sprite:  {
                 texture: './fish/' + type + '/body.png',
-                xScale: 0.5,
-                yScale: 0.5,
+                xScale: spriteScale,
+                yScale: spriteScale,
                 yOffset: 0.1
             }
     }});
 
-    var tail = Bodies.rectangle(x + length / 4, y - 5, length / 3, height * 0.6, { 
+    var tail = Bodies.rectangle(x + (length * 0.35), y - 5, length * 0.5, height * 0.6, { 
         collisionFilter: collisionGroup,
         chamfer: rounded,
         restitution: restitution,
@@ -65,44 +66,44 @@ export default function makeFish(type, length, height, x, y) {
         render: {
             sprite:  {
                 texture: './fish/' + type + '/tail.png',
-                xScale: 0.5,
-                yScale: 0.5
+                xScale: spriteScale,
+                yScale: spriteScale
             }
     }});
 
-    var eye = Bodies.circle(x, y, height / 4, { 
+    var eye = Bodies.circle(x + (0.33 * length), y + (height * 0.1), height * 0.09, { 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/eye.png',
-                xScale: 0.5,
-                yScale: 0.5
+                xScale: spriteScale,
+                yScale: spriteScale
             }
     }});
 
-    var pectoral = Bodies.rectangle(x - (length / 10), y + (height / 24), length / 12, height / 4, { 
+    var pectoral = Bodies.rectangle(x - (length * 0.1), y + (height * 0.1), length * 0.2, height * 0.2, { 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/pectoral.png',
-                xScale: 0.5,
-                yScale: 0.5
+                xScale: spriteScale,
+                yScale: spriteScale
             }
     }});
 
-    var pelvic = Bodies.rectangle(x - (length / 10), y + (height / 24), length / 12, height / 4, { 
+    var pelvic = Bodies.rectangle(x - (length * 0.1), y + (height * 0.35), length * 0.12, height * 0.3, { 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/pelvic.png',
-                xScale: 0.5,
-                yScale: 0.5
+                xScale: spriteScale,
+                yScale: spriteScale
             }
     }});
 
@@ -112,8 +113,8 @@ export default function makeFish(type, length, height, x, y) {
     var headBody = Constraint.create({
         bodyA: head,
         bodyB: body,
-        pointA: { x: length / 16, y: 0 },
-        pointB: { x: -length / 12, y: 0 },
+        pointA: { x: length * 0.1, y: 0 },
+        pointB: { x: -length * 0.15, y: 0 },
         stiffness: 0.8,
         damping: 0.1,
         length: 0
@@ -122,7 +123,7 @@ export default function makeFish(type, length, height, x, y) {
     var headEye = Constraint.create({
         bodyA: head,
         bodyB: eye,
-        pointA: { x: -30, y: -5 },
+        pointA: { x: -length * 0.1, y: -height * 0.1 },
         stiffness: 1,
         length: 0
     });
@@ -130,8 +131,8 @@ export default function makeFish(type, length, height, x, y) {
     var headMouthA = Constraint.create({
         bodyA: head,
         bodyB: mouth,
-        pointA: { x: -30, y: 8 },
-        pointB: { x: 10, y: 0 },
+        pointA: { x: -length * 0.09, y: height * 0.11 },
+        pointB: { x: length * 0.04, y: height * 0.08 },
         stiffness: 1,
         length: 0
     });
@@ -139,37 +140,36 @@ export default function makeFish(type, length, height, x, y) {
     var headMouthB = Constraint.create({
         bodyA: head,
         bodyB: mouth,
-        pointA: { x: -25, y: 13 },
-        pointB: { x: 15, y: 5 },
-        stiffness: 0.2,
-        length: 3
+        pointA: { x: -length * 0.16, y: -height * 0.04 },
+        pointB: { x: -length * 0.04, y: -height * 0.08 },
+        stiffness: 0.001,
+        length: 0
     });
 
     var bodyTail = Constraint.create({
         bodyA: body,
         bodyB: tail,
-        pointA: { x: length / 16, y: 0 },
-        pointB: { x: -length / 12, y: 4 },
+        pointA: { x: length * 0.1, y: 0 },
+        pointB: { x: -length * 0.2, y: height * 0.02 },
         stiffness: 0.8,
         damping: 0.1,
         length: 0
     });
 
     var bodyPectoralA = Constraint.create({
-        bodyA: body,
+        bodyA: head,
         bodyB: pectoral,
-        pointA: { x: -length / 16, y: 5 },
-        pointB: { x: -length / 60, y: 0 },
-        stiffness: 0.1,
-        damping: 0.1,
+        pointA: { x: length * 0.06, y: height * 0.1 },
+        pointB: { x: -length * 0.06, y: height * 0.05 },
+        stiffness: 1,
         length: 0
     });
 
     var bodyPectoralB = Constraint.create({
         bodyA: body,
         bodyB: pectoral,
-        pointA: { x: -length / 12, y: 5 },
-        pointB: { x: -length / 30, y: 0 },
+        pointA: { x: -length * 0.12, y: height * 0.1 },
+        pointB: { x: length * 0.05, y: height * 0.05 },
         stiffness: 0.01,
         damping: 0.1,
         length: 0
@@ -178,9 +178,9 @@ export default function makeFish(type, length, height, x, y) {
     var bodyPelvicA = Constraint.create({
         bodyA: body,
         bodyB: pelvic,
-        pointA: { x: -length / 10, y: height / 6 },
-        pointB: { x: -length / 50, y: -10 },
-        stiffness: 0.8,
+        pointA: { x: -length * 0.2, y: height * 0.22},
+        pointB: { x: -length * 0.05, y: -height * 0.15 },
+        stiffness: 0.9,
         damping: 0.1,
         length: 0
     });
@@ -188,12 +188,17 @@ export default function makeFish(type, length, height, x, y) {
     var bodyPelvicB = Constraint.create({
         bodyA: body,
         bodyB: pelvic,
-        pointA: { x: -length / 8, y: height / 5 },
-        pointB: { x: -length / 30, y: 0 },
+        pointA: { x: -length * 0.13, y: height * 0.3 },
+        pointB: { x: length * 0.07, y: height * 0.1},
         stiffness: 0.01,
         damping: 0.1,
         length: 0
     });
+
+
+    if (nose) {
+        // add nose
+    }
 
 
     var bodies = [

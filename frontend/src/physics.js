@@ -27,7 +27,7 @@ var Engine = Matter.Engine,
             width: width,
             height: height,
             showAngleIndicator: false,
-            wireframes: true,
+            wireframes: false,
             showDebug: false,
             showPositions: true,
             showBounds: true
