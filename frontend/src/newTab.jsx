@@ -13,6 +13,7 @@ function NewTab() {
 
     function onEnterBowl(type) {
         console.log(type);
+        showData(type);
     }
 
     // async function fetchFish() {
