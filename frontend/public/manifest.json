@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Fishbowl",
-  "description": "Fishbowl",
+  "description": "Floppy, overfished fish species right in your browser window :)",
   "version": "1.0",
   "chrome_url_overrides": {
     "newtab": "newTab.html"
+  },
+  "icons": {
+    "48": "icon.png"
   }
 }

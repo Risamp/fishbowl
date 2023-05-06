@@ -3,28 +3,35 @@ import { render } from "react-dom";
 import FishSim from "./physics";
 import Clock from "./components/clock.jsx";
 import './main.css';
-import Matter from "matter-js";
+import FishDetails from "./components/fishDetails.jsx";
 
 
 function NewTab() {
-    const [fishType, setFishType] = useState("meagre");
-    const [fishSim, setFishSim] = useState(new FishSim(onEnterBowl));
+    const [bowlFish, setBowlFish] = useState({});
+    const [fishData, setFishData] = useState([]);
+    const fishSim = new FishSim(onEnterBowl);
 
     function onEnterBowl(type) {
-        if (fishType != type) {
-            setFishType(type);
-        }
+        console.log(type);
+        setBowlFish({ name: type })
     }
 
     async function fetchFish() {
         let response = await fetch('http://localhost:5000/fish');
         let data = await response.json(); 
-        console.log(data)
+        console.log(data);
+        setFishData(data);
     }
     
     useEffect(() => {
         fetchFish();
     }, []);
+
+    useEffect(() => {
+        fishData.forEach((fish) => {
+            fishSim.addFish(fish.scientific_name);
+        })
+    }, [fishData]);
 
     return (
         <>
@@ -43,6 +50,7 @@ function NewTab() {
                         <path d="M9.498,24.966S32.587,8,150.654,8s141.156,16.966,141.156,16.966" fill="none" stroke="#f7f7f7" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
                     </g>
                 </svg>
+                <FishDetails/>
             </div>
 
             <div className="panel foreground">
@@ -61,6 +69,7 @@ function NewTab() {
                     </g>
                 </svg>
             </div>
+            <canvas id="matter-canvas" class="overlay"></canvas>
         </>
         
     );

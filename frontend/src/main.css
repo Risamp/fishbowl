@@ -28,10 +28,6 @@
     padding: 0;
 }
 
-html {
-    background: var(--main);
-}
-
 #matter-canvas {
     z-index: 1;
     background: transparent !important;
@@ -43,6 +39,7 @@ html {
 
 .background {
     z-index: -5;
+    background: linear-gradient(158.94deg, #54C9EE 6.46%, #092D4F 96.79%);
 }
 
 .foreground {
@@ -79,6 +76,7 @@ html {
     justify-content: center;
     padding-top: calc(50vh - 35rem);
     color: var(--light);
+    user-select: none;
 }
 
 .clock__date {

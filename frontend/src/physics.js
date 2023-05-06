@@ -19,6 +19,7 @@ const height = Math.max(document.documentElement.clientHeight || 0, window.inner
 export default class FishSim {
 
     constructor(onBowlEnter) {
+        console.log("Building FishSim.");
         this.engine = Engine.create();
         this.world = this.engine.world;
         this.render = Render.create({
@@ -34,23 +35,29 @@ export default class FishSim {
                 showBounds: false
             }
         });
+        this.fishInBowl = "";
 
         this.run(onBowlEnter);
     }
     
     run(bowlCallback) {
+        console.log("Running FishSim.");
         Events.on(this.engine, 'collisionStart', function(event) {
             var pairs = event.pairs;
 
             // change object colours to show those starting a collision
             for (var i = 0; i < pairs.length; i++) {
                 var pair = pairs[i];
-                if (pair.bodyA.label === "panel") {
-                    bowlCallback(pair.bodyB.label);
+                if (pair.bodyA.label === "bowl" && pair.bodyB.label[0] == "$") {
+                    if (pair.bodyB.label.slice(1) === this.fishInBowl) { return; } // ignore fish that is already in bowl
+                    this.fishInBowl = pair.bodyB.label.slice(1);
+                    bowlCallback(pair.bodyB.label.slice(1));
                 }
                 
-                if (pair.bodyB.label === "panel") {
-                    bowlCallback(pair.bodyA.label);
+                if (pair.bodyB.label === "bowl" && pair.bodyA.label[0] == "$") {
+                    if (pair.bodyA.label.slice(1) === this.fishInBowl) { return; } // ignore fish that is already in bowl
+                    this.fishInBowl = pair.bodyA.label.slice(1);
+                    bowlCallback(pair.bodyA.label.slice(1));
                 }
             }
         });
@@ -94,8 +101,9 @@ export default class FishSim {
             })
         ]);
 
-        this.addFish("marlin");
-        
+        this.addFish("Bahaba taipingensis");
+        this.addFish("Thunnus obesus");
+        this.addFish("Argyrosomus japonicus");
         
         // add mouse control
         var mouse = Mouse.create(this.render.canvas),
@@ -121,20 +129,23 @@ export default class FishSim {
         });
     }
 
-    addFish(type) {
+    addFish(scientificName) {
         var species = null;
         fishTypes.forEach((s) => {
-            if (type === s.label) {
+            if (scientificName === s.scientificName) {
                 species = s;
             }
         });
 
         if (species == null) {
-            console.log("Uh oh... couldn't find that species.");
+            console.log("Uh oh... couldn't find a species called " + scientificName);
             return;
         }
 
-        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + 100, -height / 2, 0.5, species.nose));
+        var offsetX = 0//(Math.floor(Math.random() * 5) - 2.5) * 5;
+        var offsetY = 0//(Math.floor(Math.random() * 5) - 2.5) * 5;
+
+        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + offsetX, -height / 2 + offsetY, 0.5, species.nose));
     }
 }
 

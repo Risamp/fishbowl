@@ -57,7 +57,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         restitution: restitution,
         friction: friction,
         density: 0.0002,
-        label: type,
+        label: "$" + type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/body.png',
@@ -326,35 +326,35 @@ export const fishTypes = [
         label: "bahaba",
         length: 653,
         height: 213,
-        scientificName: "bahaba taipingensis",
+        scientificName: "Bahaba taipingensis",
         nose: false
     },
     {
         label: "bluefin",
         length: 731,
         height: 324,
-        scientificName: "thunnus maccoyii",
+        scientificName: "Thunnus maccoyii",
         nose: false
     },
     {
         label: "bigeye",
         length: 731,
         height: 324,
-        scientificName: "thunnus obesus",
+        scientificName: "Thunnus obesus",
         nose: false
     },
     {
         label: "marlin",
         length: 828,
         height: 352,
-        scientificName: "makaira nigricans",
+        scientificName: "Makaira nigricans",
         nose: true
     },
     {
         label: "meagre",
         length: 580,
         height: 228,
-        scientificName: "argyrosomus japonicus",
+        scientificName: "Argyrosomus japonicus",
         nose: false
     },
 ]
