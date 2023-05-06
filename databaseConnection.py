@@ -1,10 +1,14 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+import os
 
 class DatabaseConnection(object):
 
     def __init__(self) -> None:
-        self.uri = "mongodb+srv://rpais:JJMu9uNhMNSED8rk@cluster0.4qnxw2i.mongodb.net/?retryWrites=true&w=majority"
+        load_dotenv()
+        self.uri = os.getenv('DATABASE_CONNECTION')
+        print(self.uri)
         self.client = None
 
     def __enter__(self):
