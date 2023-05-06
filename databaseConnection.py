@@ -17,6 +17,8 @@ class DatabaseConnection(object):
         if not self.client:
             try:
                 self.client = MongoClient(self.uri, server_api=ServerApi('1'))
+                self.client.admin.command('ping')
+                print("Pinged your deployment. You successfully connected to MongoDB!")
             except:
                 print("other error")
         return self.client

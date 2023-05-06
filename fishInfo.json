@@ -1,0 +1,51 @@
+{"data": [{
+        "_id": 1,
+        "scientific_name": "Makaira nigricans",
+        "common_name" : "Blue Marlin",
+        "population_trend" : "Decreasing", 
+        "region": "Global",
+        "status": "Vulnerable",
+        "overfishing": "Blue Marlin are taken in directed artisanal and sport fisheries, and also as incidental catch in pelagic longline fisheries targeting tunas and swordfish",
+        "reference" : "https://www.iucnredlist.org/species/170314/46936155"
+    },
+    {
+        "_id": 2,
+        "scientific_name": "Argyrosomus japonicus",
+        "common_name" : "Dusky Meagre",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Endangered",
+        "overfishing": "Overexploitation and habitat loss are the major threats to A. japonicus. This species is an important resource in several fisheries throughout its range but they exhibit intrinsic life history characteristics that make them vulnerable to exploitation including predictable aggregation sites, juvenile estuarine dependence, and strong adult site fidelity.",
+        "reference" : "https://www.iucnredlist.org/species/49145403/49234015"
+    },
+    {
+        "_id": 3,
+        "scientific_name": "Bahaba taipingensis",
+        "common_name" : "Chinese Bahaba",
+        "population_decreasing" : "Decreasing", 
+        "region": "South-East Asia",
+        "status": "Critically Endangered",
+        "overfishing": "The primary major threat to this species is overfishing, but impacts from degradation of estuarine habitats is also likely significant (Zao et al. 2012). Its intrinsic biological characteristics of large size, limited geographic range and aggregating behaviour often involving sound production that makes individuals particularly easy to find, contributes to its susceptibility to rapid declines under heavy fishing pressure",
+        "reference" : "https://www.iucnredlist.org/species/61334/130105307"
+    },
+    {
+        "_id": 4,
+        "scientific_name": "Thunnus maccoyii",
+        "common_name" : "Southern bluefin tuna",
+        "population_decreasing" : "Increasing", 
+        "region": "Global",
+        "status": "Endangered",
+        "overfishing": "While Southern Bluefin Tuna is currently not undergoing overfishing, it is overfished and its biomass is extremely low compared to the historical levels (SSB is currently ~13% of unfished stock levels in southern Australia)",
+        "reference" : "https://www.iucnredlist.org/species/21858/170082633"
+    },
+    {
+        "_id": 5,
+        "scientific_name": "Thunnus obesus",
+        "common_name" : "Bigeye Tuna",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Vulnerable",
+        "overfishing": "In the Atlantic, Bigeye Tuna is currently overfished and is undergoing overfishing. The current MSY (maximum sustainable yield) may be less than the MSY achieved in past decades due to overall selectivity shifting to smaller fish.",
+        "reference" : "https://www.iucnredlist.org/species/21859/46912402"
+    }]
+}
