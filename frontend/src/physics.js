@@ -48,20 +48,28 @@ var Engine = Matter.Engine,
         Bodies.rectangle(width / 2, -wallPadding, width, 50, { isStatic: true }),
         Bodies.rectangle(width / 2, height + wallPadding, width, 50, { isStatic: true }),
         Bodies.rectangle(width + wallPadding, height / 2, 50, height, { isStatic: true }),
-        Bodies.rectangle(-wallPadding, height / 2, 50, height, { isStatic: true })
+        Bodies.rectangle(-wallPadding, height / 2, 50, height, { isStatic: true }),
+
+        // center panel
+        Bodies.rectangle(width / 2, height / 2, 480, 280, { 
+            isStatic: true, 
+            render: { 
+                visible: false 
+            } 
+        })
     ]);
 
     // add fish
-    Composite.add(world, makeFish("test", 580, 228, width / 2, height / 2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 2, 1.2, true));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 2, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2, 0.5));
-
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2, 0.2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2, 0.2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2, 0.2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2, 0.2));
+    Composite.add(world, makeFish("test", 580, 228, width / 2, height / 4));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 4, 1, true));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 4, 0.8));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 4, 0.8));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 4, 0.5));
+    // some little buggers
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 4, 0.25));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 4, 0.25));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 4, 0.25));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 4, 0.3));
     
     
     // add mouse control

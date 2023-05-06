@@ -13,8 +13,8 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
     if (scale > 2) scale = 2;
 
     var restitution = 0.8;
-    var friction = 0.5;
-    var rounded = { radius: (height * 0.6) * 0.5 * scale * 0.95 }; // match chamfer to half of body part height, then scale slightly down again to not over-round (which flips the mesh inside out)
+    var friction = 0.6;
+    var rounded = { radius: (height * 0.6) * 0.5 * scale * 0.9 }; // match chamfer to half of body part height, then scale slightly down again to not over-round (which flips the mesh inside out)
     var collisionGroup = { group: group };
     var spriteScale = 0.5 * scale;
     var length = scale * length;
@@ -35,7 +35,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
             }
     }});
 
-    var head = Bodies.rectangle(x - (0.25 * length), y, 0.35 * length, height * 0.6, { 
+    var head = Bodies.rectangle(x - (0.25 * length), y, 0.35 * length, height * 0.55, { 
         collisionFilter: collisionGroup,
         chamfer: rounded,
         restitution: restitution,
@@ -48,7 +48,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
             }
     }});
 
-    var body = Bodies.rectangle(x, y, length * 0.4, height * 0.6, { 
+    var body = Bodies.rectangle(x, y, length * 0.4, height * 0.55, { 
         collisionFilter: collisionGroup,
         chamfer: rounded,
         restitution: restitution,
@@ -63,7 +63,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
             }
     }});
 
-    var tail = Bodies.rectangle(x + (length * 0.35), y - 5, length * 0.5, height * 0.6, { 
+    var tail = Bodies.rectangle(x + (length * 0.35), y - 5, length * 0.5, height * 0.55, { 
         collisionFilter: collisionGroup,
         chamfer: rounded,
         restitution: restitution,
@@ -150,8 +150,8 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         bodyB: mouth,
         pointA: { x: -length * 0.16, y: -height * 0.04 },
         pointB: { x: -length * 0.04, y: -height * 0.08 },
-        stiffness: 0.001,
-        damping: 0.2,
+        stiffness: 0.002,
+        damping: 0.3,
         length: 0,
         render: constraintsRender
     });
