@@ -139,8 +139,8 @@ body {
 .fish-info__panel {
     box-sizing: border-box;
     position: absolute;
-    top: 5rem;
-    right: 5rem;
+    top: 4rem;
+    right: 4rem;
     width: 20vw;
     height: fit-content;
     min-height: 5rem;
@@ -153,6 +153,7 @@ body {
     overflow: hidden;
     color: #202020;
 
+    user-select: none;
     z-index: 10;
 
     transition: all 200ms ease;
@@ -249,4 +250,49 @@ body {
     padding: 0.3rem 0;
     border-top: 1px solid #909090;
     border-bottom: 1px solid #909090;
+}
+
+.credits {
+    user-select: none;
+    z-index: 100;
+    color: white;
+    font-family: var(--font-family-major);
+    font-weight:600;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.credits a {
+    color: white;
+    opacity: 0.2;
+    cursor: pointer;
+
+    transition: opacity 100ms ease;
+}
+
+.credits a:visited {
+    color: white;
+}
+
+.credits span {
+    opacity: 0.2;
+}
+
+.credits a:hover {
+    opacity: 1;
+}
+
+.fishbowl {
+    user-select: none;
+    color: white;
+    font-family: var(--font-family-major);
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.8rem;
+    font-weight:700;
+    opacity: 0.5;
 }

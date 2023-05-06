@@ -1,6 +1,7 @@
 import Matter from "matter-js";
 import makeFish from "./fish";
 import { fishTypes } from "./fish";
+import { shuffleArray } from "./util";
 
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -12,6 +13,8 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Events = Matter.Events;
 
+
+var fishSciNames = ["Makaira nigricans", "Argyrosomus japonicus", "Bahaba taipingensis", "Thunnus maccoyii", "Thunnus obesus"];
 var canvas = document.querySelector('#matter-canvas');
 const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -101,11 +104,11 @@ export default class FishSim {
             })
         ]);
 
-        this.addFish("Bahaba taipingensis");
-        this.addFish("Thunnus obesus");
-        this.addFish("Thunnus maccoyii");
-        this.addFish("Makaira nigricans");
-        this.addFish("Argyrosomus japonicus");
+        shuffleArray(fishSciNames);
+
+        this.addFish(fishSciNames[0]);
+        this.addFish(fishSciNames[1]);
+        this.addFish(fishSciNames[2]);
         
         // add mouse control
         var mouse = Mouse.create(this.render.canvas),
