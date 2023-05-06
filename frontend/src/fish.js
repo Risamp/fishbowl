@@ -215,7 +215,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         bodyB: tail,
         pointA: { x: 0, y: 0 },
         pointB: { x: 0, y: 0 },
-        stiffness: 0.02,
+        stiffness: 0.04,
         damping: 0.1,
         length: length * 0.32,
         render: constraintsRender
@@ -226,7 +226,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         bodyB: body,
         pointA: { x: 0, y: 0 },
         pointB: { x: 0, y: 0 },
-        stiffness: 0.02,
+        stiffness: 0.025,
         damping: 0.1,
         length: length * 0.28,
         render: constraintsRender
