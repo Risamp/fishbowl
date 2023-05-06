@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 
-export default function makeFish(type, length, height, x, y, hasNose = false) {
+export default function makeFish(type, length, height, x, y, scale = 1, hasNose = false) {
     var Body = Matter.Body,
         Bodies = Matter.Bodies,
         Composite = Matter.Composite,
@@ -10,16 +10,17 @@ export default function makeFish(type, length, height, x, y, hasNose = false) {
 
     var fish = Composite.create({ label: type });
 
+    if (scale > 2) scale = 2;
+
     var restitution = 0.8;
     var friction = 0.5;
-    var rounded = { radius: (height * 0.6) * 0.5 };
+    var rounded = { radius: (height * 0.6) * 0.5 * scale * 0.95 }; // match chamfer to half of body part height, then scale slightly down again to not over-round (which flips the mesh inside out)
     var collisionGroup = { group: group };
-    var spriteScale = 0.5;
+    var spriteScale = 0.5 * scale;
+    var length = scale * length;
+    var height = scale * height;
     var constraintsRender = { visible: false };
 
-    if (hasNose) {
-        console.log('schnozz inbound')
-    }
     // BODIES 
 
     var mouth = Bodies.rectangle(x - (0.35 * length), y + (0.1 * height), length * 0.1, height * 0.2, { 
@@ -244,18 +245,29 @@ export default function makeFish(type, length, height, x, y, hasNose = false) {
                 }
         }});
 
-        var headNose = Constraint.create({
+        var headNoseA = Constraint.create({
             bodyA: head,
             bodyB: nose,
             pointA: { x: -length * 0.05, y: -height * 0.15 },
-            pointB: { x: length * 0.2, y: -height * 0.03 },
+            pointB: { x: length * 0.16, y: -height * 0.03 },
+            stiffness: 0.9,
+            length: 0,
+            render: constraintsRender
+        });
+
+        var headNoseB = Constraint.create({
+            bodyA: head,
+            bodyB: nose,
+            pointA: { x: -length * 0.09, y: -height * 0.09 },
+            pointB: { x: length * 0.12, y: height * 0.03 },
             stiffness: 0.9,
             length: 0,
             render: constraintsRender
         });
 
         Composite.addBody(fish, nose);
-        Composite.addConstraint(fish, headNose);
+        Composite.addConstraint(fish, headNoseA);
+        Composite.addConstraint(fish, headNoseB);
     }
 
 

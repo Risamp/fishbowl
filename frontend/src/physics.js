@@ -40,7 +40,7 @@ var Engine = Matter.Engine,
     var runner = Runner.create();
     Runner.run(runner, engine);
 
-    var wallPadding = 50;
+    var wallPadding = 35;
 
     // add bodies
     Composite.add(world, [
@@ -53,10 +53,15 @@ var Engine = Matter.Engine,
 
     // add fish
     Composite.add(world, makeFish("test", 580, 228, width / 2, height / 2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 2), true);
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 2, 1.2, true));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 2, 0.8));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2, 0.8));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2, 0.5));
+
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2, 0.2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2, 0.2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2, 0.2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2, 0.2));
     
     
     // add mouse control
