@@ -71,13 +71,26 @@ export default class FishSim {
             Bodies.rectangle(width + wallPadding, 0, 50, height * 2, { isStatic: true }),
             Bodies.rectangle(-wallPadding, 0, 50, height * 2, { isStatic: true }),
 
-            // center panel
-            Bodies.rectangle(width / 2, height / 2, 480, 280, { 
+
+            // bowl
+            Bodies.rectangle((width / 2) + 265, (height / 2) - 50, 20, 80, { 
+                isStatic: true,
+                render: {
+                    visible: false
+                }
+            }),
+            Bodies.rectangle((width / 2) - 265, (height / 2) - 50, 20, 80, { 
+                isStatic: true,
+                render: {
+                    visible: false
+                }
+            }),
+            Bodies.rectangle((width / 2), (height / 2) - 20, 530, 20, { 
                 isStatic: true, 
-                label: "panel",
-                render: { 
-                    visible: false 
-                } 
+                label: "bowl",
+                render: {
+                    visible: false
+                }
             })
         ]);
 

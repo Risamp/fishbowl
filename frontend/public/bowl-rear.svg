@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="b" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" width="301" height="44" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 301 44">
+  <defs>
+    <linearGradient id="d" data-name="Dégradé sans nom 295" x1="37.253" y1="-42.383" x2="263.747" y2="88.383" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7f7f7"/>
+      <stop offset=".38" stop-color="#f0f0ed"/>
+      <stop offset=".994" stop-color="#e0e0d5"/>
+    </linearGradient>
+  </defs>
+  <g id="c" data-name="Calque 1">
+    <ellipse cx="150.5" cy="23" rx="150.5" ry="21" fill="url(#d)"/>
+    <path d="M9.498,24.966S32.587,8,150.654,8s141.156,16.966,141.156,16.966" fill="none" stroke="#f7f7f7" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+  </g>
+</svg>
