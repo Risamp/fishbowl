@@ -103,6 +103,8 @@ export default class FishSim {
 
         this.addFish("Bahaba taipingensis");
         this.addFish("Thunnus obesus");
+        this.addFish("Thunnus maccoyii");
+        this.addFish("Makaira nigricans");
         this.addFish("Argyrosomus japonicus");
         
         // add mouse control
@@ -142,10 +144,10 @@ export default class FishSim {
             return;
         }
 
-        var offsetX = 0//(Math.floor(Math.random() * 5) - 2.5) * 5;
-        var offsetY = 0//(Math.floor(Math.random() * 5) - 2.5) * 5;
+        var offsetX = ((Math.random() * 5) - 2.5) * 150;
+        var offsetY = ((Math.random() * 5) - 2.5) * 150;
 
-        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + offsetX, (height / 2) + offsetY, 0.5, species.nose));
+        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + offsetX, (-height / 2) + offsetY, 0.5, species.nose));
     }
 }
 

@@ -68,7 +68,7 @@ function NewTab() {
                     </g>
                 </svg>
             </div>
-            <canvas id="matter-canvas" class="overlay"></canvas>
+            
         </>
         
     );
