@@ -47,5 +47,56 @@
         "status": "Vulnerable",
         "overfishing": "In the Atlantic, Bigeye Tuna is currently overfished and is undergoing overfishing. The current MSY (maximum sustainable yield) may be less than the MSY achieved in past decades due to overall selectivity shifting to smaller fish.",
         "reference" : "https://www.iucnredlist.org/species/21859/46912402"
-    }]
+    },
+    {
+        "_id": 6,
+        "scientific_name": "Huso huso",
+        "common_name" : "Beluga",
+        "population_decreasing" : "Decreasing", 
+        "region": "Europe",
+        "status": "Critically Endangered",
+        "overfishing": "For Beluga, illegal catches in estuaries and rivers for meat and caviar is a major threat to the species. Overharvesting and a sharp increase in poaching has led to the largest and most mature specimens being removed from the population and reducing natural reproduction to almost zero.",
+        "reference" : "https://www.iucnredlist.org/ja/species/10269/135087846"
+    },
+    {
+        "_id": 7,
+        "scientific_name": "Choerodon rubescens",
+        "common_name" : "Baldchin Groper",
+        "population_decreasing" : "Unknown", 
+        "region": "Oceania",
+        "status": "Least Concern",
+        "overfishing": "WA’s Baldchin Groper is classified as recovering, responding to management plans put in place between 2007 and 2010 to address overfishing. Both the commercial and recreational take for the species have been halved to help rebuild stocks.",
+        "reference" : "https://www.fish.gov.au/report/386-Baldchin-Groper-2020"
+    },
+    {
+        "_id": 8,
+        "scientific_name": "Seriolella brama",
+        "common_name" : "Blue Warehou",
+        "population_decreasing" : "Unknown", 
+        "region": "Oceania",
+        "status": "Overfished",
+        "overfishing": "The main fishing method that incidentally catches blue warehou is bottom trawling.Blue warehou are listed as Conservation Dependent under the EPBC Act and are managed under Australian Fisheries Management Authority's (AFMA’s) Blue Warehou Stock Rebuilding Strategy.",
+        "reference" : "https://www.afma.gov.au/species/blue-warehou"
+    },
+    {
+        "_id": 9,
+        "scientific_name": "Epinephelus akaara",
+        "common_name" : "Hong Kong Grouper",
+        "population_decreasing" : "Decreasing", 
+        "region": "Asia",
+        "status": "Endangered",
+        "overfishing": "Overexploitation is a major threat to this species throughout its range. There is also a possibility for loss of significant levels of natural genetic diversity and for reduction of first sexual maturation in age and size given severely reduced populations in most of its range. ",
+        "reference" : "https://www.afma.gov.au/species/blue-warehou"
+    },
+    {
+        "_id": 10,
+        "scientific_name": "Mobula birostris",
+        "common_name" : "Oceanic Manta Ray",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Endangered",
+        "overfishing": "Mobulid rays, including the Oceanic Manta Ray, are both targeted and caught incidentally in industrial and artisanal fisheries (Couturier et al. 2012, Croll et al. 2016, Stewart et al. 2018). These rays are captured in a wide range of gear types including harpoons, drift nets, purse seine nets, gill nets, traps, trawls, and longlines.",
+        "reference" : "https://www.iucnredlist.org/species/198921/214397182"
+    }
+]
 }
