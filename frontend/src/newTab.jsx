@@ -4,6 +4,7 @@ import FishSim from "./physics";
 import Clock from "./components/clock.jsx";
 import './main.css';
 import FishDetails from "./components/fishDetails.jsx";
+import showData from "./showData";
 
 
 function NewTab() {

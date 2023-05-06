@@ -28,6 +28,10 @@
     padding: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
 #matter-canvas {
     z-index: 1;
     background: transparent !important;
@@ -130,4 +134,27 @@
 .button--primary:hover {
     border-width: 2px 8px 8px 2px;
     transform: translate(3, 3);
+}
+
+.fish-info__panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 2rem;
+    width: 20vw;
+    height: fit-content;
+    min-height: 5rem;
+    min-width: 10rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    z-index: 10;
+
+    transition: all 200ms ease;
+}
+
+.fish-info__panel.closed {
+    transform: translateX(2000px);
 }
