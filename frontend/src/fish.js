@@ -13,7 +13,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
     if (scale > 2) scale = 2;
 
     var restitution = 0.8;
-    var friction = 0.6;
+    var friction = 0.7;
     var rounded = { radius: (height * 0.6) * 0.5 * scale * 0.9 }; // match chamfer to half of body part height, then scale slightly down again to not over-round (which flips the mesh inside out)
     var collisionGroup = { group: group };
     var spriteScale = 0.5 * scale;

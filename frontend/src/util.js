@@ -1,11 +1,7 @@
 export function getTime() {
-    var date = new Date();
-
-    return date.getHours() + ":" + date.getMinutes();
+    return new Date().toLocaleString('en-au',{hour: "2-digit", minute: "2-digit", hour12: false });
 }
 
 export function getDate() {
-    var date = new Date();
-
     return new Date().toLocaleString('en-au',{weekday: 'long', day: 'numeric', month:'long'});
 }

@@ -60,15 +60,11 @@ var Engine = Matter.Engine,
     ]);
 
     // add fish
-    Composite.add(world, makeFish("test", 580, 228, width / 2, -3 * (height / 4), 2, true));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 100, -height / 2, 0.6, true));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 100, -height / 2, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 200, -height / 2, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 200, -height / 2, 0.7));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 300, -height / 2, 0.6, true));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 300, -height / 2, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, -height / 2, 0.8));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, -height / 2, 0.7));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 100, -height / 2, 0.5, true));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 100, -height / 2, 0.7));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 200, -height / 2, 0.7));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 200, -height / 2, 0.6));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 300, -height / 2, 0.5, true));
     // some little buggers
     Composite.add(world, makeFish("test", 580, 228, (width / 2) + 100, -height / 4, 0.25));
     Composite.add(world, makeFish("test", 580, 228, (width / 2) - 100, -height / 4, 0.4));
