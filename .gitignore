@@ -1,6 +1,9 @@
 #pycache
 /__pycache__
 
+#virtualenvironment
+/myvenv
+
 # Logs
 logs
 *.log
