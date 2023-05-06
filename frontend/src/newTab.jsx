@@ -1,20 +1,34 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { render } from "react-dom";
 import './main.css';
-import Matter from "matter-js";
+import FishSim from "./physics";
+import Clock from "./components/clock.jsx";
 
 function NewTab() {
+    const [fishType, setFishType] = useState("none");
+    const [fishSim, setFishSim] = useState(new FishSim(onEnterBowl));
+
+    function onEnterBowl(type) {
+        if (fishType != type) {
+            setFishType(type);
+        }
+    }
+
+    useEffect(() => {
+    }, []);
+
     return (
         <>
-            <div>
-                <h1>Fishbowl</h1>
-                <p>pee pee poo poo</p>
+            <div className="overlay background">
+                <Clock />
+            </div>
+
+            <div className="panel foreground">
+                <button className="button button--primary" onClick={() => fishSim.addFish(fishType)}>{fishType}</button>
             </div>
 
             <script type="text/javascript" src="./physics.js"></script>
-            <img src="./fish/test/fish-a.png"/>
-            <img src="./fish/test/fish-a.png"/>
-            <img src="./fish/test/fish-a.png"/>
         </>
         
     );

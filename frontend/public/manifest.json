@@ -3,9 +3,6 @@
   "name": "Fishbowl",
   "description": "Fishbowl",
   "version": "1.0",
-  "permissions": [
-    "tabs"
-  ],
   "chrome_url_overrides": {
     "newtab": "newTab.html"
   }

@@ -1,74 +1,6 @@
 import Matter from "matter-js";
+import makeFish from "./fish";
 
-function makeCar(xx, yy, width, height, wheelSize) {
-    var Body = Matter.Body,
-        Bodies = Matter.Bodies,
-        Composite = Matter.Composite,
-        Constraint = Matter.Constraint;
-
-    var group = Body.nextGroup(true),
-        wheelBase = 20,
-        wheelAOffset = -width * 0.5 + wheelBase,
-        wheelBOffset = width * 0.5 - wheelBase,
-        wheelYOffset = 0;
-
-    var car = Composite.create({ label: 'Car' }),
-        body = Bodies.rectangle(xx, yy, width, height, { 
-            collisionFilter: {
-                group: group
-            },
-            chamfer: {
-                radius: height * 0.5
-            },
-            density: 0.0002
-        });
-
-    var wheelA = Bodies.circle(xx + wheelAOffset, yy + wheelYOffset, wheelSize, { 
-        collisionFilter: {
-            group: group
-        },
-        friction: 0.8,
-        render: {
-            sprite:  {
-                texture: './fish/test/fish-a.png',
-                xScale: 0.5,
-                yScale: 0.5
-            }
-        }
-    });
-                
-    var wheelB = Bodies.circle(xx + wheelBOffset, yy + wheelYOffset, wheelSize, { 
-        collisionFilter: {
-            group: group
-        }
-    });
-                
-    var axelA = Constraint.create({
-        bodyB: body,
-        pointB: { x: wheelAOffset, y: wheelYOffset },
-        bodyA: wheelA,
-        stiffness: 1,
-        length: 0
-    });
-                    
-    var axelB = Constraint.create({
-        bodyB: body,
-        pointB: { x: wheelBOffset, y: wheelYOffset },
-        bodyA: wheelB,
-        stiffness: 1,
-        length: 0
-    });
-    
-    Composite.addBody(car, body);
-    Composite.addBody(car, wheelA);
-    Composite.addBody(car, wheelB);
-    Composite.addConstraint(car, axelA);
-    Composite.addConstraint(car, axelB);
-
-    return car;
-};
-
-// module aliases
 var Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
@@ -76,71 +8,123 @@ var Engine = Matter.Engine,
     MouseConstraint = Matter.MouseConstraint,
     Mouse = Matter.Mouse,
     Composite = Matter.Composite,
-    Bodies = Matter.Bodies;
+    Bodies = Matter.Bodies,
+    Events = Matter.Events;
 
-    // create engine
-    var engine = Engine.create(),
-        world = engine.world;
+var canvas = document.querySelector('#matter-canvas');
+const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
-    // create renderer
-    var render = Render.create({
-        element: document.body,
-        engine: engine,
-        options: {
-            width: 800,
-            height: 600,
-            showAngleIndicator: false,
-            wireframes: false
-        }
-    });
+export default class FishSim {
 
-    Render.run(render);
+    constructor(onBowlEnter) {
+        this.engine = Engine.create();
+        this.world = this.engine.world;
+        this.render = Render.create({
+            engine: this.engine,
+            canvas: canvas,
+            options: {
+                width: width,
+                height: height,
+                showAngleIndicator: false,
+                wireframes: false,
+                showDebug: false,
+                showPositions: false,
+                showBounds: false
+            }
+        });
 
-    // create runner
-    var runner = Runner.create();
-    Runner.run(runner, engine);
-
-    // add bodies
-    Composite.add(world, [
-        // walls
-        Bodies.rectangle(400, 0, 800, 50, { isStatic: true }),
-        Bodies.rectangle(400, 600, 800, 50, { isStatic: true }),
-        Bodies.rectangle(800, 300, 50, 600, { isStatic: true }),
-        Bodies.rectangle(0, 300, 50, 600, { isStatic: true })
-    ]);
-
-    // see car function defined later in this file
-    var scale = 0.9;
-    Composite.add(world, makeCar(150, 100, 150 * scale, 30 * scale, 30 * scale));
+        this.run(onBowlEnter);
+    }
     
-    scale = 0.8;
-    Composite.add(world, makeCar(350, 300, 150 * scale, 30 * scale, 30 * scale));
-    
-    Composite.add(world, [
-        Bodies.rectangle(200, 150, 400, 20, { isStatic: true, angle: Math.PI * 0.06, render: { fillStyle: '#060a19' }}),
-        Bodies.rectangle(500, 350, 650, 20, { isStatic: true, angle: -Math.PI * 0.06, render: { fillStyle: '#060a19' }}),
-        Bodies.rectangle(300, 560, 600, 20, { isStatic: true, angle: Math.PI * 0.04, render: { fillStyle: '#060a19' }})
-    ]);
+    run(bowlCallback) {
+        Events.on(this.engine, 'collisionStart', function(event) {
+            var pairs = event.pairs;
 
-    // add mouse control
-    var mouse = Mouse.create(render.canvas),
-        mouseConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-                stiffness: 0.2,
-                render: {
-                    visible: false
+            // change object colours to show those starting a collision
+            for (var i = 0; i < pairs.length; i++) {
+                var pair = pairs[i];
+                if (pair.bodyA.label === "panel") {
+                    bowlCallback(pair.bodyB.label);
+                }
+                
+                if (pair.bodyB.label === "panel") {
+                    bowlCallback(pair.bodyA.label);
                 }
             }
         });
 
-    Composite.add(world, mouseConstraint);
+        Render.run(this.render);
 
-    // keep the mouse in sync with rendering
-    render.mouse = mouse;
+        // create runner
+        var runner = Runner.create();
+        Runner.run(runner, this.engine);
 
-    // fit the render viewport to the scene
-    Render.lookAt(render, {
-        min: { x: 0, y: 0 },
-        max: { x: 800, y: 600 }
-    });
+        var wallPadding = 35;
+
+        // add bodies
+        Composite.add(this.world, [
+            // walls
+            Bodies.rectangle(width / 2, -height - wallPadding, width, 50, { isStatic: true }), // double height ceiling
+            Bodies.rectangle(width / 2, height + wallPadding, width, 50, { isStatic: true }),
+            Bodies.rectangle(width + wallPadding, 0, 50, height * 2, { isStatic: true }),
+            Bodies.rectangle(-wallPadding, 0, 50, height * 2, { isStatic: true }),
+
+            // center panel
+            Bodies.rectangle(width / 2, height / 2, 480, 280, { 
+                isStatic: true, 
+                label: "panel",
+                render: { 
+                    visible: false 
+                } 
+            })
+        ]);
+
+        // add fish
+        Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 100, -height / 2, 0.5));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 2, 0.7));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 2, 0.7));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 2, 0.6));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 300, -height / 2, 0.5, true));
+        // // some little buggers
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 100, -height / 4, 0.25));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 4, 0.4));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 4, 0.4));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 4, 0.3));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 100, -height / 3, 0.25));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 3, 0.25, true));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 3, 0.2));
+        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 3, 0.3));
+        
+        
+        // add mouse control
+        var mouse = Mouse.create(this.render.canvas),
+            mouseConstraint = MouseConstraint.create(this.engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: {
+                        visible: false
+                    }
+                }
+            });
+
+        Composite.add(this.world, mouseConstraint);
+
+        // keep the mouse in sync with rendering
+        this.render.mouse = mouse;
+
+        // fit the render viewport to the scene
+        Render.lookAt(this.render, {
+            min: { x: 0, y: 0 },
+            max: { x: width, y: height }
+        });
+    }
+
+    addFish(type) {
+        Composite.add(this.world, makeFish(type, 580, 228, (width / 2) + 100, -height / 2, 0.5));
+    }
+}
+
+
+

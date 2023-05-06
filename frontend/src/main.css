@@ -1,3 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: "Outfit";
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap');
+}
+
+:root {
+    --panel-width: 500px;
+    --panel-height: 300px;
+
+    --dark: #BFFFA0;
+    --light: #ffffff;
+
+    --main: var(--dark);
+    --content: var(--light);
+
+    --font-family-major: 'Outfit';
+}
+
+*, div, button {
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
 html {
-    background: #2196f3;
+    background: var(--main);
+}
+
+#matter-canvas {
+    z-index: 1;
+    background: transparent !important;
+}
+
+.content {
+    font-family: var(--font-family-major);
+}
+
+.background {
+    z-index: -5;
+}
+
+.foreground {
+    z-index: 5;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+}
+
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: calc(50vh - 27rem);
+    color: var(--light);
+}
+
+.clock__date {
+    transform: translateY(4rem);
+    font-size: 4rem;
+}
+
+.clock__time {
+    font-size: 13rem; 
+}
+
+.panel {
+    position: absolute;
+    width: var(--panel-width);
+    height: var(--panel-height);
+    margin: auto;
+    inset: 0;
+    background: var(--content);
+    color: var(--main);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    border-width: 2px 5px 5px 2px;
+    border-style: solid;
+    border-color: #471554;
+}
+
+.button {
+    padding: 0.5rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 99999px;
+    font-family: var(--font-family-major);
+    cursor: pointer;
+}
+
+.button--primary {
+    position: relative;
+    background: #BFFFA0;
+    border-width: 2px 5px 5px 2px;
+    border-style: solid;
+    border-color: #471554;
+    color: #471554;
+    border-radius: 2px;
+
+    overflow: hidden;
+
+    font-weight: 800;
+    transition: all 50ms ease;
+}
+
+.button--primary:hover {
+    border-width: 2px 8px 8px 2px;
+    transform: translate(3, 3);
 }
