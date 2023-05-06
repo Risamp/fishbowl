@@ -16,7 +16,14 @@ function NewTab() {
         }
     }
 
+    async function fetchFish() {
+        console.log("enter function")
+        let response = await fetch('http://localhost:5000/fish');
+        let data = await response.json(); 
+    }
+    
     useEffect(() => {
+        fetchFish();
     }, []);
 
     return (
