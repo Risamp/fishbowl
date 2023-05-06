@@ -1,7 +1,7 @@
 from flask import Flask, send_from_directory, g
 from flask_cors import CORS, cross_origin
 from databaseConnection import DatabaseConnection
-import pymongo
+import json
 import random
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/dist')
@@ -29,10 +29,12 @@ def get_fish_info():
     db = get_db().get_client()
     with db:
         num_fish = db.fishbowl.fish.count_documents({})
-        selection = random.randint(1,num_fish)
-        fishInfo = db.fishbowl.fish.find_one({"_id" : selection})
-    return fishInfo
-    
+        selection = random.sample(range(1, num_fish), 3)
+        query = []
+        for x in selection:
+            query.append({"_id" : x})
+        fishInfo = db.fishbowl.fish.find({"$or": query})
+        return [x for x in fishInfo]
 
 
 
