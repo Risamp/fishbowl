@@ -1,7 +1,7 @@
 import Matter from "matter-js";
 
 export default function makeFish(type, length, height, x, y, scale = 1, hasNose = false) {
-    console.log("Making fish: " + type);
+    console.log("Making fish: " + type + " at position " + x + " " + y);
 
     var Body = Matter.Body,
         Bodies = Matter.Bodies,

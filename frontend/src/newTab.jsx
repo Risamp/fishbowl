@@ -9,22 +9,21 @@ import FishDetails from "./components/fishDetails.jsx";
 function NewTab() {
     const [bowlFish, setBowlFish] = useState({});
     const [fishData, setFishData] = useState([]);
-    const fishSim = new FishSim(onEnterBowl);
+    const [fishSim, setFishSim] = useState(new FishSim(onEnterBowl));
 
     function onEnterBowl(type) {
         console.log(type);
-        setBowlFish({ name: type })
     }
 
-    async function fetchFish() {
-        let response = await fetch('http://localhost:5000/fish');
-        let data = await response.json(); 
-        console.log(data);
-        setFishData(data);
-    }
+    // async function fetchFish() {
+    //     let response = await fetch('http://localhost:5000/fish');
+    //     let data = await response.json(); 
+    //     console.log(data);
+    //     setFishData(data);
+    // }
     
     useEffect(() => {
-        fetchFish();
+        //fetchFish();
     }, []);
 
     useEffect(() => {

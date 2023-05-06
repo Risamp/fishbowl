@@ -145,7 +145,7 @@ export default class FishSim {
         var offsetX = 0//(Math.floor(Math.random() * 5) - 2.5) * 5;
         var offsetY = 0//(Math.floor(Math.random() * 5) - 2.5) * 5;
 
-        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + offsetX, -height / 2 + offsetY, 0.5, species.nose));
+        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + offsetX, (height / 2) + offsetY, 0.5, species.nose));
     }
 }
 
