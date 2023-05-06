@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 
-export default function makeFish(type, length, height, x, y, nose = false) {
+export default function makeFish(type, length, height, x, y, hasNose = false) {
     var Body = Matter.Body,
         Bodies = Matter.Bodies,
         Composite = Matter.Composite,
@@ -15,7 +15,11 @@ export default function makeFish(type, length, height, x, y, nose = false) {
     var rounded = { radius: (height * 0.6) * 0.5 };
     var collisionGroup = { group: group };
     var spriteScale = 0.5;
+    var constraintsRender = { visible: false };
 
+    if (hasNose) {
+        console.log('schnozz inbound')
+    }
     // BODIES 
 
     var mouth = Bodies.rectangle(x - (0.35 * length), y + (0.1 * height), length * 0.1, height * 0.2, { 
@@ -117,7 +121,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointB: { x: -length * 0.15, y: 0 },
         stiffness: 0.8,
         damping: 0.1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
                     
     var headEye = Constraint.create({
@@ -125,7 +130,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         bodyB: eye,
         pointA: { x: -length * 0.1, y: -height * 0.1 },
         stiffness: 1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
 
     var headMouthA = Constraint.create({
@@ -134,7 +140,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointA: { x: -length * 0.09, y: height * 0.11 },
         pointB: { x: length * 0.04, y: height * 0.08 },
         stiffness: 1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
 
     var headMouthB = Constraint.create({
@@ -143,7 +150,9 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointA: { x: -length * 0.16, y: -height * 0.04 },
         pointB: { x: -length * 0.04, y: -height * 0.08 },
         stiffness: 0.001,
-        length: 0
+        damping: 0.2,
+        length: 0,
+        render: constraintsRender
     });
 
     var bodyTail = Constraint.create({
@@ -153,7 +162,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointB: { x: -length * 0.2, y: height * 0.02 },
         stiffness: 0.8,
         damping: 0.1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
 
     var bodyPectoralA = Constraint.create({
@@ -162,7 +172,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointA: { x: length * 0.06, y: height * 0.1 },
         pointB: { x: -length * 0.06, y: height * 0.05 },
         stiffness: 1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
 
     var bodyPectoralB = Constraint.create({
@@ -172,7 +183,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointB: { x: length * 0.05, y: height * 0.05 },
         stiffness: 0.01,
         damping: 0.1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
 
     var bodyPelvicA = Constraint.create({
@@ -182,7 +194,8 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointB: { x: -length * 0.05, y: -height * 0.15 },
         stiffness: 0.9,
         damping: 0.1,
-        length: 0
+        length: 0,
+        render: constraintsRender
     });
 
     var bodyPelvicB = Constraint.create({
@@ -192,12 +205,57 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         pointB: { x: length * 0.07, y: height * 0.1},
         stiffness: 0.01,
         damping: 0.1,
-        length: 0
+        length: 0,
+        render: constraintsRender
+    });
+
+    var tailStretch = Constraint.create({ // push fish back out into straight position to prevent folding
+        bodyA: body,
+        bodyB: tail,
+        pointA: { x: 0, y: 0 },
+        pointB: { x: 0, y: 0 },
+        stiffness: 0.02,
+        damping: 0.1,
+        length: length * 0.32,
+        render: constraintsRender
+    });
+
+    var headStretch = Constraint.create({ // push fish back out into straight position to prevent folding
+        bodyA: head,
+        bodyB: body,
+        pointA: { x: 0, y: 0 },
+        pointB: { x: 0, y: 0 },
+        stiffness: 0.02,
+        damping: 0.1,
+        length: length * 0.28,
+        render: constraintsRender
     });
 
 
-    if (nose) {
-        // add nose
+    if (hasNose) {
+        var nose = Bodies.rectangle(x - (0.5 * length), y, 0.4 * length, height * 0.3, { 
+            collisionFilter: collisionGroup,
+            restitution: restitution,
+            render: {
+                sprite:  {
+                    texture: './fish/' + type + '/nose.png',
+                    xScale: spriteScale,
+                    yScale: spriteScale
+                }
+        }});
+
+        var headNose = Constraint.create({
+            bodyA: head,
+            bodyB: nose,
+            pointA: { x: -length * 0.05, y: -height * 0.15 },
+            pointB: { x: length * 0.2, y: -height * 0.03 },
+            stiffness: 0.9,
+            length: 0,
+            render: constraintsRender
+        });
+
+        Composite.addBody(fish, nose);
+        Composite.addConstraint(fish, headNose);
     }
 
 
@@ -220,7 +278,9 @@ export default function makeFish(type, length, height, x, y, nose = false) {
         bodyPectoralA, 
         bodyPectoralB,
         bodyPelvicA,
-        bodyPelvicB
+        bodyPelvicB,
+        headStretch,
+        tailStretch
     ];
 
 

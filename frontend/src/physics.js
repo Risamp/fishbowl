@@ -29,8 +29,8 @@ var Engine = Matter.Engine,
             showAngleIndicator: false,
             wireframes: false,
             showDebug: false,
-            showPositions: true,
-            showBounds: true
+            showPositions: false,
+            showBounds: false
         }
     });
 
@@ -53,8 +53,10 @@ var Engine = Matter.Engine,
 
     // add fish
     Composite.add(world, makeFish("test", 580, 228, width / 2, height / 2));
-    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 400, height / 2), true);
     Composite.add(world, makeFish("test", 580, 228, (width / 2) - 400, height / 2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) + 800, height / 2));
+    Composite.add(world, makeFish("test", 580, 228, (width / 2) - 800, height / 2));
     
     
     // add mouse control
