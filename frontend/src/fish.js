@@ -320,3 +320,27 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
 
     return fish;
 };
+
+
+
+
+export const fishTypes = [
+    {
+        label: "bahaba",
+        length: 653,
+        height: 213,
+        scientificName: "bahaba taipingensis"
+    },
+    {
+        label: "bluefin",
+        length: 731,
+        height: 324,
+        scientificName: "thunnus maccoyii"
+    },
+    {
+        label: "marlin",
+        length: 828,
+        height: 352,
+        scientificName: "makaira nigricans"
+    },
+]

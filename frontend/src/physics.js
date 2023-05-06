@@ -81,7 +81,11 @@ export default class FishSim {
         ]);
 
         // add fish
-        Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 100, -height / 2, 0.5));
+        // Composite.add(this.world, makeFish("bahaba", 653, 213, (width / 2) + 100, -height / 2, 0.5));
+        // Composite.add(this.world, makeFish("bluefin", 653, 213, (width / 2) + 100, -height / 2, 0.5));
+
+
+        Composite.add(this.world, makeFish("marlin", 828, 352, (width / 2) + 100, -height / 2, 0.5, true));
         // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 2, 0.7));
         // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 2, 0.7));
         // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 2, 0.6));
