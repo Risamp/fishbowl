@@ -1,5 +1,6 @@
 import Matter from "matter-js";
 import makeFish from "./fish";
+import { fishTypes } from "./fish";
 
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -70,35 +71,30 @@ export default class FishSim {
             Bodies.rectangle(width + wallPadding, 0, 50, height * 2, { isStatic: true }),
             Bodies.rectangle(-wallPadding, 0, 50, height * 2, { isStatic: true }),
 
-            // center panel
-            Bodies.rectangle(width / 2, height / 2, 480, 280, { 
+
+            // bowl
+            Bodies.rectangle((width / 2) + 265, (height / 2) - 50, 20, 80, { 
+                isStatic: true,
+                render: {
+                    visible: false
+                }
+            }),
+            Bodies.rectangle((width / 2) - 265, (height / 2) - 50, 20, 80, { 
+                isStatic: true,
+                render: {
+                    visible: false
+                }
+            }),
+            Bodies.rectangle((width / 2), (height / 2) - 20, 530, 20, { 
                 isStatic: true, 
-                label: "panel",
-                render: { 
-                    visible: false 
-                } 
+                label: "bowl",
+                render: {
+                    visible: false
+                }
             })
         ]);
 
-        // add fish
-        // Composite.add(this.world, makeFish("bahaba", 653, 213, (width / 2) + 100, -height / 2, 0.5));
-        // Composite.add(this.world, makeFish("bluefin", 653, 213, (width / 2) + 100, -height / 2, 0.5));
-
-
-        Composite.add(this.world, makeFish("marlin", 828, 352, (width / 2) + 100, -height / 2, 0.5, true));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 2, 0.7));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 2, 0.7));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 2, 0.6));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 300, -height / 2, 0.5, true));
-        // // some little buggers
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 100, -height / 4, 0.25));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 4, 0.4));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 4, 0.4));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 4, 0.3));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 100, -height / 3, 0.25));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 100, -height / 3, 0.25, true));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) + 200, -height / 3, 0.2));
-        // Composite.add(this.world, makeFish("test", 580, 228, (width / 2) - 200, -height / 3, 0.3));
+        this.addFish("marlin");
         
         
         // add mouse control
@@ -126,7 +122,19 @@ export default class FishSim {
     }
 
     addFish(type) {
-        Composite.add(this.world, makeFish(type, 580, 228, (width / 2) + 100, -height / 2, 0.5));
+        var species = null;
+        fishTypes.forEach((s) => {
+            if (type === s.label) {
+                species = s;
+            }
+        });
+
+        if (species == null) {
+            console.log("Uh oh... couldn't find that species.");
+            return;
+        }
+
+        Composite.add(this.world, makeFish(species.label, species.length, species.height, (width / 2) + 100, -height / 2, 0.5, species.nose));
     }
 }
 

@@ -9,10 +9,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         Constraint = Matter.Constraint;
 
     var group = Body.nextGroup(true);
-
-    console.log(type);
     var fish = Composite.create({ label: type });
-    console.log(fish.label);
 
     if (scale > 2) scale = 2;
 
@@ -329,18 +326,35 @@ export const fishTypes = [
         label: "bahaba",
         length: 653,
         height: 213,
-        scientificName: "bahaba taipingensis"
+        scientificName: "bahaba taipingensis",
+        nose: false
     },
     {
         label: "bluefin",
         length: 731,
         height: 324,
-        scientificName: "thunnus maccoyii"
+        scientificName: "thunnus maccoyii",
+        nose: false
+    },
+    {
+        label: "bigeye",
+        length: 731,
+        height: 324,
+        scientificName: "thunnus obesus",
+        nose: false
     },
     {
         label: "marlin",
         length: 828,
         height: 352,
-        scientificName: "makaira nigricans"
+        scientificName: "makaira nigricans",
+        nose: true
+    },
+    {
+        label: "meagre",
+        length: 580,
+        height: 228,
+        scientificName: "argyrosomus japonicus",
+        nose: false
     },
 ]
