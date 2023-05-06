@@ -1,6 +1,8 @@
 import Matter from "matter-js";
 
 export default function makeFish(type, length, height, x, y, scale = 1, hasNose = false) {
+    console.log("Making fish: " + type);
+
     var Body = Matter.Body,
         Bodies = Matter.Bodies,
         Composite = Matter.Composite,
@@ -8,7 +10,9 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
 
     var group = Body.nextGroup(true);
 
+    console.log(type);
     var fish = Composite.create({ label: type });
+    console.log(fish.label);
 
     if (scale > 2) scale = 2;
 
@@ -27,6 +31,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/mouth.png',
@@ -40,6 +45,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         chamfer: rounded,
         restitution: restitution,
         friction: friction,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/head.png',
@@ -54,6 +60,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         restitution: restitution,
         friction: friction,
         density: 0.0002,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/body.png',
@@ -68,6 +75,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         chamfer: rounded,
         restitution: restitution,
         friction: friction,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/tail.png',
@@ -80,6 +88,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/eye.png',
@@ -92,6 +101,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/pectoral.png',
@@ -104,6 +114,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         collisionFilter: collisionGroup,
         restitution: restitution,
         friction: friction,
+        label: type,
         render: {
             sprite:  {
                 texture: './fish/' + type + '/pelvic.png',
@@ -237,6 +248,7 @@ export default function makeFish(type, length, height, x, y, scale = 1, hasNose 
         var nose = Bodies.rectangle(x - (0.5 * length), y, 0.4 * length, height * 0.3, { 
             collisionFilter: collisionGroup,
             restitution: restitution,
+            label: type,
             render: {
                 sprite:  {
                     texture: './fish/' + type + '/nose.png',

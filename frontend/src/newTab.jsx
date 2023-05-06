@@ -2,30 +2,30 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { render } from "react-dom";
 import './main.css';
-import { getTime, getDate } from "./util";
+import FishSim from "./physics";
+import Clock from "./components/clock.jsx";
 
 function NewTab() {
-    const [time, setTime] = useState(getTime());
+    const [fishType, setFishType] = useState("none");
+    const [fishSim, setFishSim] = useState(new FishSim(onEnterBowl));
+
+    function onEnterBowl(type) {
+        if (fishType != type) {
+            setFishType(type);
+        }
+    }
 
     useEffect(() => {
-        const clock = setInterval(() => {
-            setTime(getTime());
-        }, 1000);
-
-        return () => clearInterval(clock); 
-    })
+    }, []);
 
     return (
         <>
             <div className="overlay background">
-                <div className="clock">
-                    <h2 className="clock__date">{getDate()}</h2>
-                    <h1 className="clock__time">{time}</h1>
-                </div>
+                <Clock />
             </div>
 
             <div className="panel foreground">
-                <button className="button button--primary">fishbowl</button>
+                <button className="button button--primary" onClick={() => fishSim.addFish(fishType)}>{fishType}</button>
             </div>
 
             <script type="text/javascript" src="./physics.js"></script>
