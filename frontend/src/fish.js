@@ -357,4 +357,18 @@ export const fishTypes = [
         scientificName: "Argyrosomus japonicus",
         nose: false
     },
+    {
+        label: "baldchin",
+        length: 550,
+        height: 310,
+        scientificName: "Choerodon rubescens",
+        nose: false
+    },
+    {
+        label: "warehou",
+        length: 435,
+        height: 236,
+        scientificName: "Seriolella brama",
+        nose: false
+    },
 ]

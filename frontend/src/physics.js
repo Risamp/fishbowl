@@ -14,7 +14,7 @@ var Engine = Matter.Engine,
     Events = Matter.Events;
 
 
-var fishSciNames = ["Makaira nigricans", "Argyrosomus japonicus", "Bahaba taipingensis", "Thunnus maccoyii", "Thunnus obesus"];
+var fishSciNames = ["Makaira nigricans", "Argyrosomus japonicus", "Bahaba taipingensis", "Thunnus maccoyii", "Thunnus obesus", "Choerodon rubescens", "Seriolella brama"];
 var canvas = document.querySelector('#matter-canvas');
 const width = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 const height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
