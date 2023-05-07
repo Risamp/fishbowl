@@ -1,0 +1,299 @@
+@import url(https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap);
+@font-face {
+    font-family: "Outfit";
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap');
+}
+
+:root {
+    --panel-width: 550px;
+    --panel-height: 200px;
+
+    --dark: #BFFFA0;
+    --light: #ffffff;
+
+    --main: var(--dark);
+    --content: var(--light);
+
+    --font-family-major: 'Outfit';
+}
+
+*, div, button {
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+#matter-canvas {
+    z-index: 1;
+    background: transparent !important;
+}
+
+.content {
+    font-family: var(--font-family-major);
+}
+
+.background {
+    z-index: -5;
+    background: linear-gradient(158.94deg, #54C9EE 6.46%, #092D4F 96.79%);
+}
+
+.foreground {
+    z-index: 5;
+}
+
+.bowl {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.bowl-rear {
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: calc(50vh - (var(--panel-height) / 2) + 9rem);
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+}
+
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: calc(50vh - 35rem);
+    color: var(--light);
+    user-select: none;
+}
+
+.clock__date {
+    transform: translateY(3rem);
+    font-size: 4rem;
+}
+
+.clock__time {
+    font-size: 13rem; 
+}
+
+.panel {
+    position: absolute;
+    width: var(--panel-width);
+    height: var(--panel-height);
+    margin: auto;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    pointer-events: none;
+}
+
+.button {
+    padding: 0.5rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 99999px;
+    font-family: var(--font-family-major);
+    cursor: pointer;
+}
+
+.button--primary {
+    position: relative;
+    background: #BFFFA0;
+    border-width: 2px 5px 5px 2px;
+    border-style: solid;
+    border-color: #471554;
+    color: #471554;
+    border-radius: 2px;
+
+    overflow: hidden;
+
+    font-weight: 800;
+    transition: all 50ms ease;
+}
+
+.button--primary:hover {
+    border-width: 2px 8px 8px 2px;
+    transform: translate(3, 3);
+}
+
+.fish-info__panel {
+    box-sizing: border-box;
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    width: 20vw;
+    height: fit-content;
+    min-height: 5rem;
+    min-width: 10rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    padding-bottom: 4rem;
+    overflow: hidden;
+    color: #202020;
+
+    user-select: none;
+    z-index: 10;
+
+    transition: all 200ms ease;
+}
+
+.fish-info__name {
+    font-weight: 400;
+    font-size: 2rem;
+    color: #202020;
+    padding-bottom: 0.5rem;
+}
+
+.fish-info__scientific {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1rem;
+    color: #303030;
+    padding-bottom: 0.5rem;
+}
+
+.fish-info__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    fill: #202020;
+    cursor: pointer;
+}
+
+.fish-info__panel.closed {
+    transform: translateX(2000px);
+}
+
+.fish-info__pop-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.fish-info__pop-trend {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fish-info__pop-container--decreasing {
+    background: #8a1515;
+    color: white;
+}
+
+.fish-info__pop-container--increasing {
+    background: #108f30;
+    color: white;
+}
+
+.fish-info__link {
+    color: #202020;
+    font-size: 0.9rem;
+
+    transition: color 200ms ease;
+}
+
+.fish-info__link:hover {
+    color: #8a1515;
+}
+
+.fish-info__status,
+.fish-info__region {
+    font-size: 0.9rem;
+
+}
+
+.fish-info__overfishing {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.fish-info__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0;
+    border-top: 1px solid #909090;
+    border-bottom: 1px solid #909090;
+}
+
+.credits {
+    user-select: none;
+    z-index: 100;
+    color: white;
+    font-family: var(--font-family-major);
+    font-weight:600;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.credits a {
+    color: white;
+    opacity: 0.2;
+    cursor: pointer;
+
+    transition: opacity 100ms ease;
+}
+
+.credits a:visited {
+    color: white;
+}
+
+.credits span {
+    opacity: 0.2;
+}
+
+.credits a:hover {
+    opacity: 1;
+}
+
+.fishbowl {
+    user-select: none;
+    color: white;
+    font-family: var(--font-family-major);
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.8rem;
+    font-weight:700;
+    opacity: 0.5;
+}
+
+/*# sourceMappingURL=newTab.css.map*/

@@ -1,0 +1,112 @@
+{"data": [{
+        "key": "marlin",
+        "_id": 1,
+        "scientific_name": "Makaira nigricans",
+        "common_name" : "Blue Marlin",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Vulnerable",
+        "overfishing": "Blue Marlin are taken in directed artisanal and sport fisheries, and also as incidental catch in pelagic longline fisheries targeting tunas and swordfish",
+        "reference" : "https://www.iucnredlist.org/species/170314/46936155"
+    },
+    {
+        "key": "meagre",
+        "_id": 2,
+        "scientific_name": "Argyrosomus japonicus",
+        "common_name" : "Dusky Meagre",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Endangered",
+        "overfishing": "Overexploitation and habitat loss are the major threats to A. japonicus. This species is an important resource in several fisheries throughout its range but they exhibit intrinsic life history characteristics that make them vulnerable to exploitation including predictable aggregation sites, juvenile estuarine dependence, and strong adult site fidelity.",
+        "reference" : "https://www.iucnredlist.org/species/49145403/49234015"
+    },
+    {
+        "key": "bahaba",
+        "_id": 3,
+        "scientific_name": "Bahaba taipingensis",
+        "common_name" : "Chinese Bahaba",
+        "population_decreasing" : "Decreasing", 
+        "region": "South-East Asia",
+        "status": "Critically Endangered",
+        "overfishing": "The primary major threat to this species is overfishing, but impacts from degradation of estuarine habitats is also likely significant (Zao et al. 2012). Its intrinsic biological characteristics of large size, limited geographic range and aggregating behaviour often involving sound production that makes individuals particularly easy to find, contributes to its susceptibility to rapid declines under heavy fishing pressure",
+        "reference" : "https://www.iucnredlist.org/species/61334/130105307"
+    },
+    {
+        "key": "bluefin",
+        "_id": 4,
+        "scientific_name": "Thunnus maccoyii",
+        "common_name" : "Southern bluefin tuna",
+        "population_decreasing" : "Increasing", 
+        "region": "Global",
+        "status": "Endangered",
+        "overfishing": "While Southern Bluefin Tuna is currently not undergoing overfishing, it is overfished and its biomass is extremely low compared to the historical levels (SSB is currently ~13% of unfished stock levels in southern Australia)",
+        "reference" : "https://www.iucnredlist.org/species/21858/170082633"
+    },
+    {
+        "key": "bigeye",
+        "_id": 5,
+        "scientific_name": "Thunnus obesus",
+        "common_name" : "Bigeye Tuna",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Vulnerable",
+        "overfishing": "In the Atlantic, Bigeye Tuna is currently overfished and is undergoing overfishing. The current MSY (maximum sustainable yield) may be less than the MSY achieved in past decades due to overall selectivity shifting to smaller fish.",
+        "reference" : "https://www.iucnredlist.org/species/21859/46912402"
+    },
+    {
+        "key": "beluga",
+        "_id": 6,
+        "scientific_name": "Huso huso",
+        "common_name" : "Beluga sturgeon",
+        "population_decreasing" : "Decreasing", 
+        "region": "Europe",
+        "status": "Critically Endangered",
+        "overfishing": "For Beluga, illegal catches in estuaries and rivers for meat and caviar is a major threat to the species. Overharvesting and a sharp increase in poaching has led to the largest and most mature specimens being removed from the population and reducing natural reproduction to almost zero.",
+        "reference" : "https://www.iucnredlist.org/ja/species/10269/135087846"
+    },
+    {
+        "key": "baldchin",
+        "_id": 7,
+        "scientific_name": "Choerodon rubescens",
+        "common_name" : "Baldchin Groper",
+        "population_decreasing" : "Unknown", 
+        "region": "Oceania",
+        "status": "Least Concern",
+        "overfishing": "WA’s Baldchin Groper is classified as recovering, responding to management plans put in place between 2007 and 2010 to address overfishing. Both the commercial and recreational take for the species have been halved to help rebuild stocks.",
+        "reference" : "https://www.fish.gov.au/report/386-Baldchin-Groper-2020"
+    },
+    {
+        "key": "warehou",
+        "_id": 8,
+        "scientific_name": "Seriolella brama",
+        "common_name" : "Blue Warehou",
+        "population_decreasing" : "Unknown", 
+        "region": "Oceania",
+        "status": "Overfished",
+        "overfishing": "The main fishing method that incidentally catches blue warehou is bottom trawling.Blue warehou are listed as Conservation Dependent under the EPBC Act and are managed under Australian Fisheries Management Authority's (AFMA’s) Blue Warehou Stock Rebuilding Strategy.",
+        "reference" : "https://www.afma.gov.au/species/blue-warehou"
+    },
+    {
+        "key": "grouper",
+        "_id": 9,
+        "scientific_name": "Epinephelus akaara",
+        "common_name" : "Hong Kong Grouper",
+        "population_decreasing" : "Decreasing", 
+        "region": "Asia",
+        "status": "Endangered",
+        "overfishing": "Overexploitation is a major threat to this species throughout its range. There is also a possibility for loss of significant levels of natural genetic diversity and for reduction of first sexual maturation in age and size given severely reduced populations in most of its range. ",
+        "reference" : "https://www.afma.gov.au/species/blue-warehou"
+    },
+    {
+        "key": "manta",
+        "_id": 10,
+        "scientific_name": "Mobula birostris",
+        "common_name" : "Oceanic Manta Ray",
+        "population_decreasing" : "Decreasing", 
+        "region": "Global",
+        "status": "Endangered",
+        "overfishing": "Mobulid rays, including the Oceanic Manta Ray, are both targeted and caught incidentally in industrial and artisanal fisheries (Couturier et al. 2012, Croll et al. 2016, Stewart et al. 2018). These rays are captured in a wide range of gear types including harpoons, drift nets, purse seine nets, gill nets, traps, trawls, and longlines.",
+        "reference" : "https://www.iucnredlist.org/species/198921/214397182"
+    }
+]
+}
